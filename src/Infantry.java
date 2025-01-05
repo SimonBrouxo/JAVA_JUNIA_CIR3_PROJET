@@ -8,10 +8,6 @@ public class Infantry extends Unit {
 
     // Constructors
     public Infantry() {}
-    public Infantry(String name, int points, TypeInfantry type) {
-        super(name, points);
-        this.typeInfantry = type;
-    }
 
     // Setters and getters
     public TypeInfantry getTypeInfantry() {
@@ -27,14 +23,15 @@ public class Infantry extends Unit {
         newInfantry.setNameUnit(scanner.nextLine());
         System.out.println(" - Choose the points of the Infantry: ");
         newInfantry.setPoints(scanner.nextInt());
-        scanner.nextLine();
         System.out.println(" - Choose the type of the Infantry between: \n" + Arrays.toString(TypeInfantry.values()));
         try {
             newInfantry.setTypeInfantry(TypeInfantry.valueOf(scanner.next()));
         } catch (IllegalArgumentException e) {
             System.out.println("Warning!\nInvalid type entered. Please choose from: " + Arrays.toString(TypeInfantry.values()));
         }
+        scanner.nextLine();
         newInfantry.printInfantry(newInfantry);
+        System.out.println("\nPress ENTER to continue");
 
         return newInfantry;
     }

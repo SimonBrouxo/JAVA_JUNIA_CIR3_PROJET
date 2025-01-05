@@ -9,11 +9,6 @@ public class Vehicle extends Unit {
 
     // Constructors
     public Vehicle() {}
-    public Vehicle(String name, int points, TypeVehicle typeVehicle, int transportCapacity) {
-        super(name, points);
-        this.typeVehicle = typeVehicle;
-        this.transportCapacity = transportCapacity;
-    }
 
     // Setters and getters
     public TypeVehicle getTypeVehicle() {
@@ -40,7 +35,6 @@ public class Vehicle extends Unit {
         newVehicle.setNameUnit(scanner.nextLine());
         System.out.println(" - Choose the point of the Vehicle: ");
         newVehicle.setPoints(scanner.nextInt());
-        scanner.nextLine();
         System.out.println(" - Choose the type of the Vehicle between: \n" + Arrays.toString(TypeVehicle.values()));
         try {
             newVehicle.setTypeVehicle(TypeVehicle.valueOf(scanner.next()));
@@ -51,7 +45,9 @@ public class Vehicle extends Unit {
             System.out.println(" - Choose the point of capacity: ");
             newVehicle.setTransportCapacity(scanner.nextInt());
         }
+        scanner.nextLine();
         newVehicle.printVehicle(newVehicle);
+        System.out.println("\nPress ENTER to continue");
 
         return newVehicle;
     }

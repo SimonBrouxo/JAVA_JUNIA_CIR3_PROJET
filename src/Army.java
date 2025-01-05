@@ -1,11 +1,10 @@
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.Iterator;
 
 public class Army {
 
-    // Attributs
+    // Attributes
     private String nameArmy;
     private String factionArmy;
     private int maxArmyPoints;
@@ -13,12 +12,6 @@ public class Army {
 
     // Constructors
     public Army() {}
-    public Army(String nameArmy, String faction, int maxArmyPoints, Map<String, UnitGroup> unitGroups) {
-        this.nameArmy = nameArmy;
-        this.factionArmy = faction;
-        this.maxArmyPoints = maxArmyPoints;
-        this.unitGroups = unitGroups;
-    }
 
     // Setters and getters
     public String getNameArmy() {
@@ -60,13 +53,11 @@ public class Army {
                     "\n\t\t - Units:");
 
             for (Unit unit : unitGroup.getUnits()) {
-                if (unit instanceof Infantry) {
-                    Infantry infantry = (Infantry) unit;
+                if (unit instanceof Infantry infantry) {
                     System.out.println("\t\t\t - Infantry: " + infantry.getNameUnit() +
                             " (" + infantry.getPoints() + " pts, " +
                             "Type: " + infantry.getTypeInfantry() + ")");
-                } else if (unit instanceof Vehicle) {
-                    Vehicle vehicle = (Vehicle) unit;
+                } else if (unit instanceof Vehicle vehicle) {
                     System.out.println("\t\t\t - Vehicle: " + vehicle.getNameUnit() +
                             " (" + vehicle.getPoints() + " pts, " +
                             "Type: " + vehicle.getTypeVehicle() + ", " +
@@ -89,14 +80,16 @@ public class Army {
         int maxArmyPoints = scanner.nextInt();
         newArmy.setMaxArmyPoints(maxArmyPoints);
         newArmy.setUnitGroups(new HashMap<>());
+        scanner.nextLine();
         newArmy.printArmy(newArmy);
+        System.out.println("\nPress ENTER to continue");
 
         return newArmy;
     }
 
     static String modifyArmyName(Army army, Scanner scanner){
         System.out.println(" - Choose the new name of the Army: ");
-        army.setNameArmy(scanner.next());
+        army.setNameArmy(scanner.nextLine());
         army.printArmy(army);
 
         return army.getNameArmy();
@@ -104,7 +97,7 @@ public class Army {
 
     static String modifyFaction(Army army, Scanner scanner){
         System.out.println(" - Choose the new faction of the Army: ");
-        army.setFactionArmy(scanner.next());
+        army.setFactionArmy(scanner.nextLine());
         army.printArmy(army);
 
         return army.getFactionArmy();
@@ -113,6 +106,7 @@ public class Army {
     static int modifyMaxArmyPoints(Army army, Scanner scanner){
         System.out.println(" - Choose the max number of Army Points: ");
         army.setMaxArmyPoints(scanner.nextInt());
+        scanner.nextLine();
         army.printArmy(army);
 
         return army.getMaxArmyPoints();
@@ -120,10 +114,8 @@ public class Army {
 
     static void addUnitGroups(Army army, Scanner scanner, Map<String, UnitGroup> mapOfUnitGroups) {
         System.out.println(" - Choose a unit group to add by its name:\n");
-        mapOfUnitGroups.forEach((name, unitGroup) -> {
-            unitGroup.printUnitGroup(unitGroup);
-        });
-        String unitGroupToAdd = scanner.next();
+        mapOfUnitGroups.forEach((name, unitGroup) -> unitGroup.printUnitGroup(unitGroup));
+        String unitGroupToAdd = scanner.nextLine();
         if(army.getUnitGroups().containsKey(unitGroupToAdd)){
             System.out.println("Warning!\nYou cannot add the same group in an army\n Press ENTER to continue.");
             scanner.nextLine();
@@ -141,17 +133,19 @@ public class Army {
                     }
                 }
             });
+            scanner.nextLine();
             army.printArmy(army);
+            System.out.println("\nPress ENTER to continue");
         }
     }
 
     static void removeUnitGroups(Army army, Scanner scanner) {
         System.out.println(" - Choose a unit group to remove by its name:\n");
-        army.getUnitGroups().forEach((name, unitGroup) -> {
-            unitGroup.printUnitGroup(unitGroup);
-        });
-        String unitGroupToRemove = scanner.next();
+        army.getUnitGroups().forEach((name, unitGroup) -> unitGroup.printUnitGroup(unitGroup));
+        String unitGroupToRemove = scanner.nextLine();
         army.getUnitGroups().entrySet().removeIf(entry -> entry.getKey().equals(unitGroupToRemove));
+        scanner.nextLine();
         army.printArmy(army);
+        System.out.println("\nPress ENTER to continue");
     }
 }

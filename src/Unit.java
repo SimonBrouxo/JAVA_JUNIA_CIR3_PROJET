@@ -33,7 +33,7 @@ public abstract class Unit {
 
     static String modifyUnitName(Unit unit, Scanner scanner){
         System.out.println(" - Choose the new name of the Unit : ");
-        unit.setNameUnit(scanner.next());
+        unit.setNameUnit(scanner.nextLine());
 
         return unit.getNameUnit();
     }

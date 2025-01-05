@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main{
@@ -13,7 +14,7 @@ public class Main{
 
         System.out.println("Press Enter to continue");
 
-        while (sc.nextLine() != "exit") {
+        while (!Objects.equals(sc.nextLine(), "exit")) {
             System.out.println(
                     """
                             =========================
@@ -50,9 +51,7 @@ public class Main{
                         break;
                     }
                     System.out.println("======= Modify an army =======\n" + "Choose the army to modify by its name : ");
-                    mapOfArmies.forEach((name,army)->{
-                        System.out.println(" - " + army.getNameArmy());
-                    });
+                    mapOfArmies.forEach((name,army)-> System.out.println(" - " + army.getNameArmy()));
                     String nameArmyForModify =  sc.nextLine();
                     mapOfArmies.forEach((name,army)->{
                         if(nameArmyForModify.equals(name)) {
@@ -65,7 +64,7 @@ public class Main{
                                      - Add a new unit group (a)
                                      - Remove a unit group (r)
                                      - Go to the main menu (menu)""");
-                            switch (sc.next()){
+                            switch (sc.nextLine()){
                                 case "n":
                                     System.out.println("======= Modify the name =======");
                                     army.setNameArmy(Army.modifyArmyName(army,sc));
@@ -110,10 +109,8 @@ public class Main{
                         break;
                     }
                     System.out.println("======= Delete an army =======\n" + "Choose the army to delete by its name : ");
-                    mapOfArmies.forEach((name,army)->{
-                        System.out.println(" - " + army.getNameArmy());
-                    });
-                    String nameArmyForDelete = sc.next();
+                    mapOfArmies.forEach((name,army)-> System.out.println(" - " + army.getNameArmy()));
+                    String nameArmyForDelete = sc.nextLine();
                     mapOfArmies.entrySet().removeIf(entry -> entry.getKey().equals(nameArmyForDelete));
                     break;
 
@@ -123,9 +120,7 @@ public class Main{
                         System.out.println("Warning!\n\nThere is no registered army\n\nPress ENTER to continue");
                         break;
                     }
-                    mapOfArmies.forEach((name,army)->{
-                        army.printArmy(army);
-                    });
+                    mapOfArmies.forEach((name,army)-> army.printArmy(army));
                     System.out.println("\nPress ENTER to continue");
                     break;
 
@@ -147,10 +142,8 @@ public class Main{
                         break;
                     }
                     System.out.println("Choose the unit group to modify by its name : ");
-                    mapOfUnitGroups.forEach((name,unitGroup)->{
-                        System.out.println(" - " + unitGroup.getName());
-                    });
-                    String unitGroupForModify = sc.next();
+                    mapOfUnitGroups.forEach((name,unitGroup)-> System.out.println(" - " + unitGroup.getName()));
+                    String unitGroupForModify = sc.nextLine();
                     mapOfUnitGroups.forEach((name,unitGroup)->{
                         if(unitGroupForModify.equals(unitGroup.getName())) {
                             unitGroup.printUnitGroup(unitGroup);
@@ -160,31 +153,31 @@ public class Main{
                                      - Add a unit (a)
                                      - Remove a unit (r)
                                      - Go to the main menu (menu)""");
-                        }
-                        switch (sc.next()){
-                            case "n":
-                                System.out.println("======= Modify the name =======");
-                                unitGroup.setName(UnitGroup.modifyUnitGroupName(unitGroup,sc));
-                                mapOfUnitGroups.replace(unitGroup.getName(),unitGroup);
-                                break;
-                            case "a":
-                                System.out.println("======= Add a unit =======");
-                                if(mapOfUnits.isEmpty()){
-                                    System.out.println("Warning!\n\nYou must first create a unit\n\nPress ENTER to continue");
+                            switch (sc.next()) {
+                                case "n":
+                                    System.out.println("======= Modify the name =======");
+                                    unitGroup.setName(UnitGroup.modifyUnitGroupName(unitGroup, sc));
+                                    mapOfUnitGroups.replace(unitGroup.getName(), unitGroup);
                                     break;
-                                }
-                                UnitGroup.addUnit(unitGroup,sc,mapOfUnits);
-                                break;
-                            case "r":
-                                System.out.println("======= Remove a unit =======");
-                                if(unitGroup.getUnits().isEmpty()) {
-                                    System.out.println("Warning!\n\nThere is no unit in this unit group\n\nPress ENTER to continue");
+                                case "a":
+                                    System.out.println("======= Add a unit =======");
+                                    if (mapOfUnits.isEmpty()) {
+                                        System.out.println("Warning!\n\nYou must first create a unit\n\nPress ENTER to continue");
+                                        break;
+                                    }
+                                    UnitGroup.addUnit(unitGroup, sc, mapOfUnits);
                                     break;
-                                }
-                                UnitGroup.removeUnit(unitGroup,sc);
-                                break;
-                            case "menu":
-                                break;
+                                case "r":
+                                    System.out.println("======= Remove a unit =======");
+                                    if (unitGroup.getUnits().isEmpty()) {
+                                        System.out.println("Warning!\n\nThere is no unit in this unit group\n\nPress ENTER to continue");
+                                        break;
+                                    }
+                                    UnitGroup.removeUnit(unitGroup, sc);
+                                    break;
+                                case "menu":
+                                    break;
+                            }
                         }
                     });
                     break;
@@ -196,10 +189,8 @@ public class Main{
                         break;
                     }
                     System.out.println("Choose the unit group to delete by its name : ");
-                    mapOfUnitGroups.forEach((name,unitGroup)->{
-                        System.out.println(" - " + unitGroup.getName());
-                    });
-                    String nameUnitGroupForDelete = sc.next();
+                    mapOfUnitGroups.forEach((name,unitGroup)-> System.out.println(" - " + unitGroup.getName()));
+                    String nameUnitGroupForDelete = sc.nextLine();
                     mapOfUnitGroups.entrySet().removeIf(entry -> entry.getKey().equals(nameUnitGroupForDelete));
                     break;
                 case "sg":
@@ -208,9 +199,7 @@ public class Main{
                         System.out.println("Warning!\n\nThere is no registered unit groups\n\nPress ENTER to continue");
                         break;
                     }
-                    mapOfUnitGroups.forEach((name,unitGroup)->{
-                        unitGroup.printUnitGroup(unitGroup);
-                    });
+                    mapOfUnitGroups.forEach((name,unitGroup)-> unitGroup.printUnitGroup(unitGroup));
                     System.out.println("\nPress ENTER to continue");
                     break;
                 case "nu":
@@ -233,56 +222,53 @@ public class Main{
                         System.out.println("Warning!\n\nYou must first create a unit\n\nPress ENTER to continue");
                         break;
                     }
-                    mapOfUnits.forEach((name,units)->{
-                        System.out.println(" - " + units.getNameUnit());
-                    });
+                    mapOfUnits.forEach((name,units)-> System.out.println(" - " + units.getNameUnit()));
                     String unityForModify = sc.nextLine();
                     mapOfUnits.forEach((name,units)->{
                         if(units.getNameUnit().equals(unityForModify)) {
-                            if(units instanceof Infantry) {
+                            if (units instanceof Infantry) {
                                 units.printInfantry((Infantry) units);
-                            }
-                            else if(units instanceof Vehicle) {
+                            } else if (units instanceof Vehicle) {
                                 units.printVehicle((Vehicle) units);
                             }
-                        System.out.println("""
-                                Choose between:
-                                 - Modify the name (n)
-                                 - Modify the points (p)
-                                 - Modify the type (t)
-                                 - Modify the capacity (c)
-                                 - Go to the main menu (menu)""");
-                        }
-                        switch (sc.next()){
-                            case "n":
-                                System.out.println("======= Modify the name =======");
-                                units.setNameUnit(Unit.modifyUnitName(units,sc));
-                                break;
-                            case "p":
-                                System.out.println("======= Modify the points =======");
-                                units.setPoints(Unit.modifyPoints(units,sc));
-                                break;
-                            case "t":
-                                System.out.println("======= Modify the type =======");
-                                if (units instanceof Infantry) {
-                                    ((Infantry) units).setTypeInfantry(Unit.modifyTypeInfantry((Infantry) units,sc));
+                            System.out.println("""
+                                    Choose between:
+                                     - Modify the name (n)
+                                     - Modify the points (p)
+                                     - Modify the type (t)
+                                     - Modify the capacity (c)
+                                     - Go to the main menu (menu)""");
+                            switch (sc.nextLine()) {
+                                case "n":
+                                    System.out.println("======= Modify the name =======");
+                                    units.setNameUnit(Unit.modifyUnitName(units, sc));
                                     break;
-                                } else if (units instanceof Vehicle) {
-                                    ((Vehicle) units).setTypeVehicle(Unit.modifyVehicle((Vehicle) units,sc));
+                                case "p":
+                                    System.out.println("======= Modify the points =======");
+                                    units.setPoints(Unit.modifyPoints(units, sc));
                                     break;
-                                }
-                            case "c":
-                                System.out.println("======= Modify the capacity =======");
-                                if (units instanceof Vehicle) {
-                                    ((Vehicle) units).setTransportCapacity(Unit.modifyTransportCapacity((Vehicle) units,sc));
+                                case "t":
+                                    System.out.println("======= Modify the type =======");
+                                    if (units instanceof Infantry) {
+                                        ((Infantry) units).setTypeInfantry(Unit.modifyTypeInfantry((Infantry) units, sc));
+                                        break;
+                                    } else if (units instanceof Vehicle) {
+                                        ((Vehicle) units).setTypeVehicle(Unit.modifyVehicle((Vehicle) units, sc));
+                                        break;
+                                    }
+                                case "c":
+                                    System.out.println("======= Modify the capacity =======");
+                                    if (units instanceof Vehicle) {
+                                        ((Vehicle) units).setTransportCapacity(Unit.modifyTransportCapacity((Vehicle) units, sc));
+                                        break;
+                                    } else if (units instanceof Infantry) {
+                                        System.out.println("Warning!\n\nAn Infantry unit has no capacity\n\nPress ENTER to continue");
+                                        sc.nextLine();
+                                        break;
+                                    }
+                                case "menu":
                                     break;
-                                } else if (units instanceof Infantry) {
-                                    System.out.println("Warning!\n\nAn Infantry unit has no capacity\n\nPress ENTER to continue");
-                                    sc.nextLine();
-                                    break;
-                                }
-                            case "menu":
-                                break;
+                            }
                         }
                     });
                     break;
@@ -293,10 +279,8 @@ public class Main{
                         break;
                     }
                     System.out.println("======= Delete a unit =======\n" + "Choose the unit to delete by its name : ");
-                    mapOfUnits.forEach((name,unit)->{
-                        System.out.println(" - " + unit.getNameUnit());
-                    });
-                    String nameUnitForDelete = sc.next();
+                    mapOfUnits.forEach((name,unit)-> System.out.println(" - " + unit.getNameUnit()));
+                    String nameUnitForDelete = sc.nextLine();
                     mapOfUnits.entrySet().removeIf(entry -> entry.getKey().equals(nameUnitForDelete));
                     break;
 
@@ -308,10 +292,10 @@ public class Main{
                     }
                     mapOfUnits.forEach((name,unit)->{
                         if(unit instanceof Infantry){
-                            ((Infantry) unit).printInfantry((Infantry) unit);
+                            unit.printInfantry((Infantry) unit);
                         }
                         if(unit instanceof Vehicle){
-                            ((Vehicle) unit).printVehicle((Vehicle) unit);
+                            unit.printVehicle((Vehicle) unit);
                         }
                     });
                     System.out.println("\nPress ENTER to continue");
