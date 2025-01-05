@@ -45,18 +45,23 @@ public class Vehicle extends Unit {
         try {
             newVehicle.setTypeVehicle(TypeVehicle.valueOf(scanner.next()));
         } catch (IllegalArgumentException e) {
-            System.out.println("Warning !\nInvalid type entered. Please choose from: " + Arrays.toString(TypeVehicle.values()));
+            System.out.println("Warning!\nInvalid type entered. Please choose from: " + Arrays.toString(TypeVehicle.values()));
         }
+        if(newVehicle.typeVehicle==TypeVehicle.Transport){
+            System.out.println(" - Choose the point of capacity: ");
+            newVehicle.setTransportCapacity(scanner.nextInt());
+        }
+        newVehicle.printVehicle(newVehicle);
 
         return newVehicle;
     }
 
     @Override
     public void printVehicle(Vehicle vehicle) {
-        System.out.println(" - Unit Name : " + vehicle.getNameUnit() +
-                " - Points : " + vehicle.getPoints() +
-                " - Type : " + vehicle.getTypeVehicle() +
-                " - Transport Capacity : " + vehicle.getTransportCapacity()
+        System.out.println(" - "+ vehicle.getNameUnit() +
+                " " + vehicle.getPoints() + "pts " +
+                "[" + vehicle.getTypeVehicle() + "] " +
+                "(Transport Capacity : " + vehicle.getTransportCapacity() + ")"
         );
     }
 }

@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public abstract class Unit {
@@ -35,5 +36,42 @@ public abstract class Unit {
         unit.setNameUnit(scanner.next());
 
         return unit.getNameUnit();
+    }
+
+    static int modifyPoints(Unit unit, Scanner scanner){
+        System.out.println(" - Choose the new points of the Unit : ");
+        unit.setPoints(scanner.nextInt());
+
+        return unit.getPoints();
+    }
+
+    static TypeInfantry modifyTypeInfantry(Infantry unitInf, Scanner scanner){
+        System.out.println(" - Choose the type of the Infantry between: \n: " + Arrays.toString(TypeInfantry.values()));
+        try {
+            unitInf.setTypeInfantry(TypeInfantry.valueOf(scanner.next()));
+        } catch (IllegalArgumentException e) {
+            System.out.println("Warning!\nInvalid type entered. Please choose from: " + Arrays.toString(TypeInfantry.values()));
+        }
+
+        return unitInf.getTypeInfantry();
+    }
+
+    static TypeVehicle modifyVehicle(Vehicle unitVeh, Scanner scanner){
+        System.out.println(" - Choose the type of the Vehicle between: \n: " + Arrays.toString(TypeVehicle.values()));
+        try {
+            unitVeh.setTypeVehicle(TypeVehicle.valueOf(scanner.next()));
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println("Warning!\nInvalid type entered. Please choose from: " + Arrays.toString(TypeVehicle.values()));
+        }
+
+        return unitVeh.getTypeVehicle();
+    }
+
+    static int modifyTransportCapacity(Vehicle unitVeh, Scanner scanner){
+        System.out.println(" - Choose the new capacity of the Vehicle");
+        unitVeh.setTransportCapacity(scanner.nextInt());
+
+        return unitVeh.getTransportCapacity();
     }
 }

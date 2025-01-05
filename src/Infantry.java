@@ -14,10 +14,10 @@ public class Infantry extends Unit {
     }
 
     // Setters and getters
-    public TypeInfantry getType() {
+    public TypeInfantry getTypeInfantry() {
         return typeInfantry;
     }
-    public void setType(TypeInfantry type) {
+    public void setTypeInfantry(TypeInfantry type) {
         this.typeInfantry = type;
     }
 
@@ -30,19 +30,20 @@ public class Infantry extends Unit {
         scanner.nextLine();
         System.out.println(" - Choose the type of the Infantry between: \n" + Arrays.toString(TypeInfantry.values()));
         try {
-            newInfantry.setType(TypeInfantry.valueOf(scanner.next()));
+            newInfantry.setTypeInfantry(TypeInfantry.valueOf(scanner.next()));
         } catch (IllegalArgumentException e) {
-            System.out.println("Warning !\nInvalid type entered. Please choose from: " + Arrays.toString(TypeInfantry.values()));
+            System.out.println("Warning!\nInvalid type entered. Please choose from: " + Arrays.toString(TypeInfantry.values()));
         }
+        newInfantry.printInfantry(newInfantry);
 
         return newInfantry;
     }
 
     @Override
     public void printInfantry(Infantry infantry) {
-        System.out.println(" - Unit Name : " + infantry.getNameUnit() +
-                " - Points : " + infantry.getPoints() +
-                " - Type : " + infantry.getType()
+        System.out.println(" - " + infantry.getNameUnit() +
+                " " + infantry.getPoints() + "pts " +
+                "[" + infantry.getTypeInfantry() + "]"
         );
     }
 }
