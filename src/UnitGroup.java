@@ -63,6 +63,7 @@ public class UnitGroup {
         System.out.println(" - Choose the new name of the Unit Group: ");
         unitGroup.setName(scanner.nextLine());
         unitGroup.printUnitGroup(unitGroup);
+        System.out.println("\nPress ENTER to continue");
 
         return unitGroup.getName();
     }

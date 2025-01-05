@@ -34,6 +34,14 @@ public abstract class Unit {
     static String modifyUnitName(Unit unit, Scanner scanner){
         System.out.println(" - Choose the new name of the Unit : ");
         unit.setNameUnit(scanner.nextLine());
+        if(unit instanceof Infantry infantry){
+            infantry.printInfantry(infantry);
+            System.out.println("\nPress ENTER to continue");
+        }
+        else if(unit instanceof Vehicle vehicle){
+            vehicle.printVehicle(vehicle);
+            System.out.println("\nPress ENTER to continue");
+        }
 
         return unit.getNameUnit();
     }
@@ -41,6 +49,14 @@ public abstract class Unit {
     static int modifyPoints(Unit unit, Scanner scanner){
         System.out.println(" - Choose the new points of the Unit : ");
         unit.setPoints(scanner.nextInt());
+        if(unit instanceof Infantry infantry){
+            infantry.printInfantry(infantry);
+            System.out.println("\nPress ENTER to continue");
+        }
+        else if(unit instanceof Vehicle vehicle){
+            vehicle.printVehicle(vehicle);
+            System.out.println("\nPress ENTER to continue");
+        }
 
         return unit.getPoints();
     }
@@ -52,6 +68,9 @@ public abstract class Unit {
         } catch (IllegalArgumentException e) {
             System.out.println("Warning!\nInvalid type entered. Please choose from: " + Arrays.toString(TypeInfantry.values()));
         }
+        scanner.nextLine();
+        unitInf.printInfantry(unitInf);
+        System.out.println("\nPress ENTER to continue");
 
         return unitInf.getTypeInfantry();
     }
@@ -64,6 +83,9 @@ public abstract class Unit {
         catch (IllegalArgumentException e) {
             System.out.println("Warning!\nInvalid type entered. Please choose from: " + Arrays.toString(TypeVehicle.values()));
         }
+        scanner.nextLine();
+        unitVeh.printVehicle(unitVeh);
+        System.out.println("\nPress ENTER to continue");
 
         return unitVeh.getTypeVehicle();
     }
@@ -71,6 +93,8 @@ public abstract class Unit {
     static int modifyTransportCapacity(Vehicle unitVeh, Scanner scanner){
         System.out.println(" - Choose the new capacity of the Vehicle");
         unitVeh.setTransportCapacity(scanner.nextInt());
+        unitVeh.printVehicle(unitVeh);
+        System.out.println("\nPress ENTER to continue");
 
         return unitVeh.getTransportCapacity();
     }

@@ -12,14 +12,20 @@ public class Main{
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Press Enter to continue");
+        System.out.println("""
+                        Welcome to the Army Editor!
+                        
+                        This software is made by <Simon BROUCQSAULT>
+                        
+                        It is recommended to debug it in a big window, otherwise the text will be cut.
+                        
+                        Press Enter to continue""");
 
         while (!Objects.equals(sc.nextLine(), "exit")) {
-            System.out.println(
-                    """
-                            =========================
-                            ======= Main Menu =======
-                            =========================
+            System.out.println("""
+                            =================================
+                            =========   Main Menu   =========
+                            =================================
                             Choose between :
                              - Create a new army (na)
                              - Modify an army (ma)
@@ -73,12 +79,10 @@ public class Main{
                                 case "f":
                                     System.out.println("======= Modify the faction =======");
                                     army.setFactionArmy(Army.modifyFaction(army,sc));
-                                    //mapOfArmies.replace(army.getFactionArmy(),army);
                                     break;
                                 case "p":
                                     System.out.println("======= Modify the max number of points =======");
                                     army.setMaxArmyPoints(Army.modifyMaxArmyPoints(army,sc));
-                                    //mapOfArmies.replace(army.getMaxArmyPoints(),army);
                                     break;
                                 case "a":
                                     System.out.println("======= Add a unit group =======");
@@ -302,8 +306,12 @@ public class Main{
                     break;
 
                 case "exit":
+                    sc.close();
+                    System.out.println("======= Exit the software =======\n\nGoodbye!");
                     return;
             }
         }
+        sc.close();
+        System.out.println("Goodbye :(");
     }
 }

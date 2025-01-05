@@ -91,6 +91,7 @@ public class Army {
         System.out.println(" - Choose the new name of the Army: ");
         army.setNameArmy(scanner.nextLine());
         army.printArmy(army);
+        System.out.println("\nPress ENTER to continue");
 
         return army.getNameArmy();
     }
@@ -99,6 +100,7 @@ public class Army {
         System.out.println(" - Choose the new faction of the Army: ");
         army.setFactionArmy(scanner.nextLine());
         army.printArmy(army);
+        System.out.println("\nPress ENTER to continue");
 
         return army.getFactionArmy();
     }
@@ -108,6 +110,7 @@ public class Army {
         army.setMaxArmyPoints(scanner.nextInt());
         scanner.nextLine();
         army.printArmy(army);
+        System.out.println("\nPress ENTER to continue");
 
         return army.getMaxArmyPoints();
     }
