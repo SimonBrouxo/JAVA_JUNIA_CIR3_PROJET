@@ -9,10 +9,6 @@ public abstract class Unit {
 
     // Constructors
     public Unit() {}
-    public Unit(String name, int points) {
-        this.nameUnit = name;
-        this.points = points;
-    }
 
     // Setters and getters
     public int getPoints() {
