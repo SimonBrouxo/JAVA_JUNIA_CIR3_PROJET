@@ -38,30 +38,29 @@ public class UnitGroup {
     }
 
     public void printUnitGroup(UnitGroup unitGroup) {
-        System.out.println("========================================");
-        System.out.println(" - Name: " + unitGroup.getName());
-        System.out.println(" - Total Points: " + unitGroup.getPointsTotal() + " pts");
-        System.out.println(" - Units:");
-
+        System.out.println("========================================" +
+                "\n - Name: " + unitGroup.getName() +
+                "\n - Total Points: " + unitGroup.getPointsTotal() + " pts" +
+                "\n - Units:");
         for (Unit unit : unitGroup.getUnits()) {
             if (unit instanceof Infantry) {
                 Infantry infantry = (Infantry) unit;
-                System.out.println(" -\t Infantry: " + infantry.getNameUnit() +
-                        " (" + infantry.getPoints() + " pts, Type: " + infantry.getTypeInfantry() + ")");
+                System.out.println("\t - Infantry: " + infantry.getNameUnit() +
+                        " (" + infantry.getPoints() + " pts, " +
+                        "Type: " + infantry.getTypeInfantry() + ")");
             } else if (unit instanceof Vehicle) {
                 Vehicle vehicle = (Vehicle) unit;
-                System.out.println(" -\t Vehicle: " + vehicle.getNameUnit() +
-                        " (" + vehicle.getPoints() + " pts, Type: " + vehicle.getTypeVehicle() +
-                        ", Transport Capacity: " + vehicle.getTransportCapacity() + ")");
+                System.out.println("\t - Vehicle: " + vehicle.getNameUnit() +
+                        " (" + vehicle.getPoints() + " pts, " +
+                        "Type: " + vehicle.getTypeVehicle() +
+                        ",Capacity: " + vehicle.getTransportCapacity() + ")");
             }
         }
-        System.out.println("========================================\n");
     }
 
 
     static UnitGroup createNewUnitGroup(Scanner scanner){
         UnitGroup newUnitGroup = new UnitGroup();
-        //newUnitGroup.setUnits(new ArrayList<Unit>());
         System.out.println(" - Choose the name of the Unit group: ");
         newUnitGroup.setName(scanner.next());
         newUnitGroup.printUnitGroup(newUnitGroup);
@@ -97,7 +96,7 @@ public class UnitGroup {
     }
 
     static void removeUnit(UnitGroup unitGroup, Scanner scanner) {
-        System.out.println(" - Choose the unit to remove by its name:\n");
+        System.out.println(" - Choose the unit to remove by its index:\n");
         for (int i = 0; i < unitGroup.getUnits().size(); i++) {
             Unit unit = unitGroup.getUnits().get(i);
             System.out.println(i + " - " + unit.getNameUnit() + " (" + unit.getPoints() + " points)");

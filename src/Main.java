@@ -65,7 +65,7 @@ public class Main{
                                      - Add a new unit group (a)
                                      - Remove a unit group (r)
                                      - Go to the main menu (menu)""");
-                            switch (sc.nextLine()){
+                            switch (sc.next()){
                                 case "n":
                                     System.out.println("======= Modify the name =======");
                                     army.setNameArmy(Army.modifyArmyName(army,sc));
