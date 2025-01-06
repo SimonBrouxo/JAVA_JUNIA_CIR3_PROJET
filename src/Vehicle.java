@@ -32,7 +32,7 @@ public class Vehicle extends Unit {
     static Vehicle createNewVehicle(Scanner scanner){
         Vehicle newVehicle = new Vehicle();
         System.out.println(" - Choose the name of the Vehicle: ");
-        newVehicle.setNameUnit(scanner.nextLine());
+        newVehicle.setNameUnit(scanner.nextLine().replace(" ","_"));
         System.out.println(" - Choose the point of the Vehicle: ");
         newVehicle.setPoints(scanner.nextInt());
         System.out.println(" - Choose the type of the Vehicle between: \n" + Arrays.toString(TypeVehicle.values()));

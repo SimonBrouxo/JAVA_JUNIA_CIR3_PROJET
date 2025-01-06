@@ -52,7 +52,7 @@ public class UnitGroup {
     static UnitGroup createNewUnitGroup(Scanner scanner){
         UnitGroup newUnitGroup = new UnitGroup();
         System.out.println(" - Choose the name of the Unit group: ");
-        newUnitGroup.setName(scanner.nextLine());
+        newUnitGroup.setName(scanner.nextLine().replace(" ","_"));
         newUnitGroup.printUnitGroup(newUnitGroup);
         System.out.println("\nPress ENTER to continue");
 
@@ -61,7 +61,7 @@ public class UnitGroup {
 
     static String modifyUnitGroupName(UnitGroup unitGroup, Scanner scanner){
         System.out.println(" - Choose the new name of the Unit Group: ");
-        unitGroup.setName(scanner.nextLine());
+        unitGroup.setName(scanner.nextLine().replace(" ","_"));
         unitGroup.printUnitGroup(unitGroup);
         System.out.println("\nPress ENTER to continue");
 
@@ -78,7 +78,7 @@ public class UnitGroup {
                 unit.printVehicle((Vehicle)unit);
             }
         });
-        String unitNameToAdd = scanner.nextLine();
+        String unitNameToAdd = scanner.next();
         if(mapOfUnits.containsKey(unitNameToAdd)){
             Unit newUnitToAdd = mapOfUnits.get(unitNameToAdd);
             unitGroup.getUnits().add(newUnitToAdd);
@@ -96,7 +96,6 @@ public class UnitGroup {
             System.out.println(i + " - " + unit.getNameUnit() + " (" + unit.getPoints() + " points)");
         }
         int indexToRemove = scanner.nextInt();
-        scanner.nextLine();
         if (indexToRemove >= 0 && indexToRemove < unitGroup.getUnits().size()) {
             Unit removedUnit = unitGroup.getUnits().remove(indexToRemove);
             unitGroup.pointsTotal -= removedUnit.getPoints();

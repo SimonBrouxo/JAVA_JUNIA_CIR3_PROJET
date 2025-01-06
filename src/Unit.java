@@ -29,7 +29,7 @@ public abstract class Unit {
 
     static String modifyUnitName(Unit unit, Scanner scanner){
         System.out.println(" - Choose the new name of the Unit : ");
-        unit.setNameUnit(scanner.nextLine());
+        unit.setNameUnit(scanner.nextLine().replace(" ","_"));
         if(unit instanceof Infantry infantry){
             infantry.printInfantry(infantry);
             System.out.println("\nPress ENTER to continue");

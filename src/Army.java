@@ -71,10 +71,10 @@ public class Army {
     static Army createNewArmy(Scanner scanner) {
         Army newArmy = new Army();
         System.out.println(" - Choose the name of the Army: ");
-        String nameArmy = scanner.nextLine();
+        String nameArmy = scanner.nextLine().replace(" ","_");
         newArmy.setNameArmy(nameArmy);
         System.out.println(" - Choose the faction of the Army: ");
-        String factionArmy = scanner.nextLine();
+        String factionArmy = scanner.nextLine().replace(" ","_");
         newArmy.setFactionArmy(factionArmy);
         System.out.println(" - Choose the max number of Army Points: ");
         int maxArmyPoints = scanner.nextInt();
@@ -89,7 +89,7 @@ public class Army {
 
     static String modifyArmyName(Army army, Scanner scanner){
         System.out.println(" - Choose the new name of the Army: ");
-        army.setNameArmy(scanner.nextLine());
+        army.setNameArmy(scanner.nextLine().replace(" ","_"));
         army.printArmy(army);
         System.out.println("\nPress ENTER to continue");
 
@@ -98,7 +98,7 @@ public class Army {
 
     static String modifyFaction(Army army, Scanner scanner){
         System.out.println(" - Choose the new faction of the Army: ");
-        army.setFactionArmy(scanner.nextLine());
+        army.setFactionArmy(scanner.nextLine().replace(" ","_"));
         army.printArmy(army);
         System.out.println("\nPress ENTER to continue");
 
@@ -136,7 +136,6 @@ public class Army {
                     }
                 }
             });
-            scanner.nextLine();
             army.printArmy(army);
             System.out.println("\nPress ENTER to continue");
         }
@@ -147,7 +146,6 @@ public class Army {
         army.getUnitGroups().forEach((name, unitGroup) -> unitGroup.printUnitGroup(unitGroup));
         String unitGroupToRemove = scanner.nextLine();
         army.getUnitGroups().entrySet().removeIf(entry -> entry.getKey().equals(unitGroupToRemove));
-        scanner.nextLine();
         army.printArmy(army);
         System.out.println("\nPress ENTER to continue");
     }

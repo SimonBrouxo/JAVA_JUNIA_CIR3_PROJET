@@ -20,7 +20,7 @@ public class Infantry extends Unit {
     static Infantry createNewInfantry(Scanner scanner) {
         Infantry newInfantry = new Infantry();
         System.out.println(" - Choose the name of the Infantry: ");
-        newInfantry.setNameUnit(scanner.nextLine());
+        newInfantry.setNameUnit(scanner.nextLine().replace(" ","_"));
         System.out.println(" - Choose the points of the Infantry: ");
         newInfantry.setPoints(scanner.nextInt());
         System.out.println(" - Choose the type of the Infantry between: \n" + Arrays.toString(TypeInfantry.values()));
